@@ -1,0 +1,230 @@
+/* Body and Navigation */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #fefeff;
+    margin: 0;
+    padding: 0;
+}
+
+nav {
+    background-color: #007bff;
+    padding: 15px;
+    color: white;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin-right: 15px;
+    font-weight: bold;
+}
+
+/* Container */
+.container {
+    max-width: 1000px;
+    margin: 40px auto;
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 12px rgba(0,0,0,0.1);
+}
+
+h2 {
+    color: #007bff;
+    text-align: center;
+}
+
+/* Search Box */
+input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Table Styling */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: #007bff;
+    color: white;
+}
+
+/* Delete Button */
+button {
+    padding: 6px 12px;
+    border: none;
+    background-color: #dc3545;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #b02a37;
+}
+
+/* Star Ratings */
+.star {
+    font-size: 18px;
+    margin-right: 1px;
+}
+
+.star.filled {
+    color: #f7c100;
+}
+
+.star.empty {
+    color: #ccc;
+}
+
+/* Instructor Average Section */
+.averages {
+    background-color: #f4faff;
+    border: 1px solid #cce5ff;
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+}
+
+.averages ul {
+    list-style: none;
+    padding: 0;
+}
+
+.averages li {
+    margin-bottom: 5px;
+    font-size: 16px;
+}
+
+/* Back Button */
+.back-button {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.back-button a {
+    background-color: #007bff;
+    color: white;
+    padding: 12px 25px;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 6px;
+    display: inline-block;
+    transition: background-color 0.3s ease;
+}
+
+.back-button a:hover {
+    background-color: #0056b3;
+}
+
+/* Enhanced Success Notification */
+.success-notification {
+    background-color: #dff2bf;
+    color: #4F8A10;
+    border-left: 4px solid #4F8A10;
+    padding: 12px 20px;
+    margin: 15px 0;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    animation: slideIn 0.5s ease-out forwards, fadeOut 0.5s ease-out 4s forwards;
+    position: relative;
+    overflow: hidden;
+}
+
+.success-notification:before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 3px;
+    width: 100%;
+    background-color: #4F8A10;
+    animation: shrinkBar 4s linear forwards;
+}
+
+.success-icon {
+    background-color: #4F8A10;
+    color: white;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 15px;
+    font-size: 14px;
+}
+
+.success-content {
+    flex-grow: 1;
+}
+
+.success-content h4 {
+    margin: 0 0 5px 0;
+    font-size: 16px;
+}
+
+.success-content p {
+    margin: 0;
+    font-size: 14px;
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    color: #4F8A10;
+    cursor: pointer;
+    font-size: 18px;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+    padding: 0;
+}
+
+.close-btn:hover {
+    opacity: 1;
+    background: none;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(-20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+}
+
+@keyframes shrinkBar {
+    from {
+        width: 100%;
+    }
+    to {
+        width: 0%;
+    }
+}
