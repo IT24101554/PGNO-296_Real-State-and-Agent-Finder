@@ -1,0 +1,77 @@
+2025-05-21T11:55:44.592+05:30  INFO 17580 --- [main] .r.RealestateagentfinderApplicationTests : Starting RealestateagentfinderApplicationTests using Java 22.0.2 with PID 17580 (started by himan in C:\Users\himan\OneDrive\Desktop\project1\realestateagentfinder)
+2025-05-21T11:55:44.592+05:30 DEBUG 17580 --- [main] .r.RealestateagentfinderApplicationTests : Running with Spring Boot v3.4.5, Spring v6.2.6
+2025-05-21T11:55:44.606+05:30  INFO 17580 --- [main] .r.RealestateagentfinderApplicationTests : No active profile set, falling back to 1 default profile: "default"
+2025-05-21T11:55:45.955+05:30  INFO 17580 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2025-05-21T11:55:46.494+05:30  INFO 17580 --- [main] .r.RealestateagentfinderApplicationTests : Started RealestateagentfinderApplicationTests in 2.596 seconds (process running for 4.315)
+2025-05-21T11:56:35.466+05:30  INFO 13128 --- [main] c.e.r.RealestateagentfinderApplication   : Starting RealestateagentfinderApplication using Java 22.0.2 with PID 13128 (C:\Users\himan\OneDrive\Desktop\project1\realestateagentfinder\target\classes started by himan in C:\Users\himan\OneDrive\Desktop\project1\realestateagentfinder)
+2025-05-21T11:56:35.468+05:30 DEBUG 13128 --- [main] c.e.r.RealestateagentfinderApplication   : Running with Spring Boot v3.4.5, Spring v6.2.6
+2025-05-21T11:56:35.470+05:30  INFO 13128 --- [main] c.e.r.RealestateagentfinderApplication   : No active profile set, falling back to 1 default profile: "default"
+2025-05-21T11:56:36.857+05:30  INFO 13128 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-05-21T11:56:36.882+05:30  INFO 13128 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-05-21T11:56:36.882+05:30  INFO 13128 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.40]
+2025-05-21T11:56:36.936+05:30  INFO 13128 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-05-21T11:56:36.936+05:30  INFO 13128 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1381 ms
+2025-05-21T11:56:37.159+05:30  INFO 13128 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2025-05-21T11:56:37.547+05:30  INFO 13128 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-05-21T11:56:37.558+05:30  INFO 13128 --- [main] c.e.r.RealestateagentfinderApplication   : Started RealestateagentfinderApplication in 2.889 seconds (process running for 3.385)
+2025-05-21T11:59:05.346+05:30  INFO 13128 --- [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-05-21T11:59:05.360+05:30  INFO 13128 --- [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-05-21T11:59:07.422+05:30  INFO 10984 --- [main] c.e.r.RealestateagentfinderApplication   : Starting RealestateagentfinderApplication using Java 22.0.2 with PID 10984 (C:\Users\himan\OneDrive\Desktop\project1\realestateagentfinder\target\classes started by himan in C:\Users\himan\OneDrive\Desktop\project1\realestateagentfinder)
+2025-05-21T11:59:07.428+05:30 DEBUG 10984 --- [main] c.e.r.RealestateagentfinderApplication   : Running with Spring Boot v3.4.5, Spring v6.2.6
+2025-05-21T11:59:07.428+05:30  INFO 10984 --- [main] c.e.r.RealestateagentfinderApplication   : No active profile set, falling back to 1 default profile: "default"
+2025-05-21T11:59:08.953+05:30  INFO 10984 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-05-21T11:59:08.968+05:30  INFO 10984 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-05-21T11:59:08.968+05:30  INFO 10984 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.40]
+2025-05-21T11:59:09.032+05:30  INFO 10984 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-05-21T11:59:09.032+05:30  INFO 10984 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1508 ms
+2025-05-21T11:59:09.253+05:30  INFO 10984 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2025-05-21T11:59:09.652+05:30  INFO 10984 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-05-21T11:59:09.663+05:30  INFO 10984 --- [main] c.e.r.RealestateagentfinderApplication   : Started RealestateagentfinderApplication in 3.056 seconds (process running for 3.65)
+2025-05-21T12:06:45.325+05:30  INFO 10984 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-05-21T12:06:45.327+05:30  INFO 10984 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-05-21T12:06:45.329+05:30  INFO 10984 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2025-05-21T12:06:45.356+05:30  WARN 10984 --- [http-nio-8080-exec-1] o.s.web.servlet.PageNotFound             : No mapping for GET /realestateagentfinder/templates/admin-agents.html
+2025-05-21T12:06:45.364+05:30  WARN 10984 --- [http-nio-8080-exec-1] o.s.web.servlet.PageNotFound             : No endpoint GET /realestateagentfinder/templates/admin-agents.html.
+2025-05-21T12:06:45.489+05:30  WARN 10984 --- [http-nio-8080-exec-2] o.s.web.servlet.PageNotFound             : No mapping for GET /favicon.ico
+2025-05-21T12:06:45.489+05:30  WARN 10984 --- [http-nio-8080-exec-2] o.s.web.servlet.PageNotFound             : No endpoint GET /favicon.ico.
+2025-05-21T12:09:19.760+05:30  INFO 10984 --- [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-05-21T12:09:19.772+05:30  INFO 10984 --- [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-05-21T12:09:22.461+05:30  INFO 47892 --- [main] c.e.r.RealestateagentfinderApplication   : Starting RealestateagentfinderApplication using Java 22.0.2 with PID 47892 (C:\Users\himan\OneDrive\Desktop\project1\realestateagentfinder\target\classes started by himan in C:\Users\himan\OneDrive\Desktop\project1\realestateagentfinder)
+2025-05-21T12:09:22.470+05:30 DEBUG 47892 --- [main] c.e.r.RealestateagentfinderApplication   : Running with Spring Boot v3.4.5, Spring v6.2.6
+2025-05-21T12:09:22.470+05:30  INFO 47892 --- [main] c.e.r.RealestateagentfinderApplication   : No active profile set, falling back to 1 default profile: "default"
+2025-05-21T12:09:23.851+05:30  INFO 47892 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-05-21T12:09:23.871+05:30  INFO 47892 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-05-21T12:09:23.871+05:30  INFO 47892 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.40]
+2025-05-21T12:09:24.096+05:30  INFO 47892 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-05-21T12:09:24.096+05:30  INFO 47892 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1533 ms
+2025-05-21T12:09:24.277+05:30  INFO 47892 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2025-05-21T12:09:24.668+05:30  INFO 47892 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-05-21T12:09:24.689+05:30  INFO 47892 --- [main] c.e.r.RealestateagentfinderApplication   : Started RealestateagentfinderApplication in 3.021 seconds (process running for 3.569)
+2025-05-21T12:10:36.834+05:30  INFO 47892 --- [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-05-21T12:10:36.846+05:30  INFO 47892 --- [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-05-21T12:10:38.945+05:30  INFO 15208 --- [main] c.e.r.RealestateagentfinderApplication   : Starting RealestateagentfinderApplication using Java 22.0.2 with PID 15208 (C:\Users\himan\OneDrive\Desktop\project1\realestateagentfinder\target\classes started by himan in C:\Users\himan\OneDrive\Desktop\project1\realestateagentfinder)
+2025-05-21T12:10:38.963+05:30 DEBUG 15208 --- [main] c.e.r.RealestateagentfinderApplication   : Running with Spring Boot v3.4.5, Spring v6.2.6
+2025-05-21T12:10:38.965+05:30  INFO 15208 --- [main] c.e.r.RealestateagentfinderApplication   : No active profile set, falling back to 1 default profile: "default"
+2025-05-21T12:10:40.425+05:30  INFO 15208 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-05-21T12:10:40.447+05:30  INFO 15208 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-05-21T12:10:40.447+05:30  INFO 15208 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.40]
+2025-05-21T12:10:40.511+05:30  INFO 15208 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-05-21T12:10:40.511+05:30  INFO 15208 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1451 ms
+2025-05-21T12:10:40.712+05:30  INFO 15208 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2025-05-21T12:10:41.114+05:30  INFO 15208 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-05-21T12:10:41.127+05:30  INFO 15208 --- [main] c.e.r.RealestateagentfinderApplication   : Started RealestateagentfinderApplication in 2.987 seconds (process running for 3.555)
+2025-05-21T12:15:36.141+05:30  INFO 15208 --- [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-05-21T12:15:36.169+05:30  INFO 15208 --- [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-05-21T14:26:30.962+05:30  INFO 25052 --- [main] c.e.r.RealestateagentfinderApplication   : Starting RealestateagentfinderApplication using Java 22.0.2 with PID 25052 (C:\Users\himan\OneDrive\Desktop\PGNO-296_Real-State-Finder\target\classes started by himan in C:\Users\himan\OneDrive\Desktop\PGNO-296_Real-State-Finder)
+2025-05-21T14:26:30.964+05:30 DEBUG 25052 --- [main] c.e.r.RealestateagentfinderApplication   : Running with Spring Boot v3.4.5, Spring v6.2.6
+2025-05-21T14:26:30.965+05:30  INFO 25052 --- [main] c.e.r.RealestateagentfinderApplication   : No active profile set, falling back to 1 default profile: "default"
+2025-05-21T14:26:32.556+05:30  INFO 25052 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-05-21T14:26:32.597+05:30  INFO 25052 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-05-21T14:26:32.598+05:30  INFO 25052 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.40]
+2025-05-21T14:26:32.713+05:30  INFO 25052 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-05-21T14:26:32.714+05:30  INFO 25052 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1649 ms
+2025-05-21T14:26:32.950+05:30  INFO 25052 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2025-05-21T14:26:33.387+05:30  INFO 25052 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-05-21T14:26:33.396+05:30  INFO 25052 --- [main] c.e.r.RealestateagentfinderApplication   : Started RealestateagentfinderApplication in 3.343 seconds (process running for 5.148)
+2025-05-21T14:59:11.200+05:30  INFO 25052 --- [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-05-21T14:59:11.233+05:30  INFO 25052 --- [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete

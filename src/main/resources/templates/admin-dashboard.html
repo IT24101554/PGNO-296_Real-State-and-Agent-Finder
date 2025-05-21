@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Real Estate Agent Finder</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+</head>
+<body>
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <div class="container">
+        <a class="navbar-brand" href="/">Real Estate Agent Finder</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item">
+                    <a class="nav-link active" href="/admin/dashboard">Dashboard</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/admin/agents">Manage Agents</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/admin/appointments">Appointments</a>
+                </li>
+<!--                <li class="nav-item">-->
+<!--                    <a class="nav-link" href="/admin/inactive-users">Inactive Users</a>-->
+<!--                </li>-->
+<!--                <li class="nav-item">-->
+<!--                    <a class="nav-link" href="/admin/analytics">Analytics</a>-->
+<!--                </li>-->
+            </ul>
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="/logout">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Main Content -->
+<div class="container my-4">
+    <div class="row mb-4">
+        <div class="col">
+            <h1>Admin Dashboard</h1>
+            <p class="text-muted">Welcome to the admin control panel</p>
+        </div>
+    </div>
+
+    <!-- Stats Cards -->
+    <div class="row mb-4">
+        <div class="col-md-3">
+            <div class="card bg-primary text-white mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">Total Agents</h5>
+                    <p class="card-text display-4" th:text="${totalAgents}">0</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card bg-success text-white mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">Verified Agents</h5>
+                    <p class="card-text display-4" th:text="${verifiedAgents}">0</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card bg-info text-white mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">Available Agents</h5>
+                    <p class="card-text display-4" th:text="${availableAgents}">0</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card bg-warning text-dark mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">Appointments</h5>
+                    <p class="card-text display-4" th:text="${upcomingAppointments.size()}">0</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <!-- Pending Agent Verification -->
+        <div class="col-md-8">
+            <div class="card mb-4">
+                <div class="card-header bg-light">
+                    <h5 class="card-title mb-0">Agents Awaiting Verification</h5>
+                </div>
+                <div class="card-body">
+                    <div th:if="${agents.isEmpty()}" class="alert alert-info">
+                        No agents waiting for verification.
+                    </div>
+                    <div class="table-responsive" th:unless="${agents.isEmpty()}">
+                        <table class="table table-striped table-hover">
+                            <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>License</th>
+                                <th>Specialization</th>
+                                <th>Experience</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="agent : ${agents}" th:unless="${agent.isVerified()}">
+                                <td th:text="${agent.name}">Agent Name</td>
+                                <td th:text="${agent.licenseNumber}">License</td>
+                                <td th:text="${agent.specialization}">Specialization</td>
+                                <td th:text="${agent.yearsOfExperience} + ' years'">Experience</td>
+                                <td>
+                                    <span class="badge bg-warning">Pending</span>
+                                </td>
+                                <td>
+                                    <form th:action="@{/admin/verify-agent/{id}(id=${agent.id})}" method="post" class="d-inline">
+                                        <input type="hidden" name="verified" value="true">
+                                        <button type="submit" class="btn btn-sm btn-success">Verify</button>
+                                    </form>
+                                    <form th:action="@{/admin/deactivate-user/{id}(id=${agent.id})}" method="post" class="d-inline">
+                                        <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this agent?')">Remove</button>
+                                    </form>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Upcoming Appointments -->
+        <div class="col-md-4">
+            <div class="card mb-4">
+                <div class="card-header bg-light">
+                    <h5 class="card-title mb-0">Upcoming Appointments</h5>
+                </div>
+                <div class="card-body">
+                    <div th:if="${upcomingAppointments.isEmpty()}" class="alert alert-info">
+                        No upcoming appointments.
+                    </div>
+                    <ul class="list-group" th:unless="${upcomingAppointments.isEmpty()}">
+                        <li class="list-group-item" th:each="appointment : ${upcomingAppointments}">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <div th:text="${appointment.appointmentTime}">Date & Time</div>
+                                    <div class="text-muted" th:text="${appointment.location}">Location</div>
+                                </div>
+                                <a th:href="@{/admin/appointments}" class="btn btn-sm btn-outline-primary">Details</a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <a href="/admin/appointments" class="btn btn-outline-primary btn-sm w-100">View All Appointments</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Verified Agents List -->
+    <div class="card mt-4">
+        <div class="card-header bg-light">
+            <h5 class="card-title mb-0">Verified Agents</h5>
+        </div>
+        <div class="card-body">
+            <div th:if="${agents.isEmpty()}" class="alert alert-info">
+                No verified agents found.
+            </div>
+            <div class="table-responsive" th:unless="${agents.isEmpty()}">
+                <table class="table table-striped table-hover">
+                    <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>License</th>
+                        <th>Specialization</th>
+                        <th>Available</th>
+                        <th>Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="agent : ${agents}" th:if="${agent.isVerified()}">
+                        <td th:text="${agent.name}">Agent Name</td>
+                        <td th:text="${agent.email}">agent@example.com</td>
+                        <td th:text="${agent.licenseNumber}">License</td>
+                        <td th:text="${agent.specialization}">Specialization</td>
+                        <td>
+                            <span th:if="${agent.isAvailable()}" class="badge bg-success">Available</span>
+                            <span th:unless="${agent.isAvailable()}" class="badge bg-secondary">Unavailable</span>
+                        </td>
+                        <td>
+                            <form th:action="@{/admin/verify-agent/{id}(id=${agent.id})}" method="post" class="d-inline">
+                                <input type="hidden" name="verified" value="false">
+                                <button type="submit" class="btn btn-sm btn-warning">Revoke</button>
+                            </form>
+                            <form th:action="@{/admin/deactivate-user/{id}(id=${agent.id})}" method="post" class="d-inline">
+                                <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this agent?')">Remove</button>
+                            </form>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Footer -->
+<footer class="bg-light py-4 mt-4">
+    <div class="container">
+        <p class="text-center text-muted mb-0">© 2025 Real Estate Agent Finder. All rights reserved.</p>
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
