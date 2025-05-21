@@ -1,0 +1,16 @@
+2025-05-21T22:23:00.025+05:30  INFO 18932 --- [main] c.e.r.RealestateagentfinderApplication   : Starting RealestateagentfinderApplication using Java 23 with PID 18932 (C:\Users\USER\Desktop\OOP Project\Project\realestateagentfinder\target\classes started by USER in C:\Users\USER\Desktop\OOP Project\Project\realestateagentfinder)
+2025-05-21T22:23:00.030+05:30 DEBUG 18932 --- [main] c.e.r.RealestateagentfinderApplication   : Running with Spring Boot v3.4.5, Spring v6.2.6
+2025-05-21T22:23:00.031+05:30  INFO 18932 --- [main] c.e.r.RealestateagentfinderApplication   : No active profile set, falling back to 1 default profile: "default"
+2025-05-21T22:23:00.843+05:30  INFO 18932 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-05-21T22:23:00.856+05:30  INFO 18932 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-05-21T22:23:00.856+05:30  INFO 18932 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.40]
+2025-05-21T22:23:00.904+05:30  INFO 18932 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-05-21T22:23:00.905+05:30  INFO 18932 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 817 ms
+2025-05-21T22:23:01.003+05:30  INFO 18932 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2025-05-21T22:23:01.266+05:30  INFO 18932 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-05-21T22:23:01.273+05:30  INFO 18932 --- [main] c.e.r.RealestateagentfinderApplication   : Started RealestateagentfinderApplication in 1.77 seconds (process running for 2.502)
+2025-05-21T22:23:43.122+05:30  INFO 18932 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-05-21T22:23:43.122+05:30  INFO 18932 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-05-21T22:23:43.122+05:30  INFO 18932 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2025-05-21T22:23:45.209+05:30  WARN 18932 --- [http-nio-8080-exec-3] o.s.web.servlet.PageNotFound             : No mapping for GET /favicon.ico
+2025-05-21T22:23:45.219+05:30  WARN 18932 --- [http-nio-8080-exec-3] o.s.web.servlet.PageNotFound             : No endpoint GET /favicon.ico.

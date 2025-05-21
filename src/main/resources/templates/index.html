@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real Estate Agent Finder - Find Your Perfect Agent</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <style>
+        /* Custom Styles */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .hero-section {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1673&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 120px 0;
+            margin-bottom: 60px;
+        }
+
+        .feature-card {
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+            height: 100%;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        .agent-card {
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+
+        .agent-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .agent-img {
+            height: 200px;
+            object-fit: cover;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+        }
+
+        .btn-primary {
+            background-color: #2c3e50;
+            border-color: #2c3e50;
+        }
+
+        .btn-primary:hover {
+            background-color: #1a252f;
+            border-color: #1a252f;
+        }
+
+        .btn-outline-light:hover {
+            background-color: white;
+            color: #2c3e50;
+        }
+
+        .testimonial-card {
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+
+        .testimonial-img {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 50%;
+            margin-right: 20px;
+        }
+
+        .cta-section {
+            background-color: #2c3e50;
+            color: white;
+            padding: 80px 0;
+            margin: 60px 0;
+        }
+
+        .footer {
+            background-color: #2c3e50;
+            color: white;
+            padding: 60px 0 30px;
+        }
+
+        .footer a {
+            color: #ddd;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            color: white;
+            text-decoration: underline;
+        }
+
+        .footer-heading {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .social-icon {
+            font-size: 1.5rem;
+            margin-right: 15px;
+            color: white;
+        }
+
+        .social-icon:hover {
+            color: #3498db;
+        }
+    </style>
+</head>
+<body>
+<!-- Navigation Bar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+        <a class="navbar-brand" href="#">Real Estate Agent Finder</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item">
+                    <a class="nav-link active" href="#"><i class="bi bi-house-door"></i> Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#"><i class="bi bi-search"></i> Find Agents</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#"><i class="bi bi-building"></i> Properties</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#"><i class="bi bi-info-circle"></i> About Us</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#"><i class="bi bi-telephone"></i> Contact</a>
+                </li>
+            </ul>
+            <div class="d-flex">
+                <a th:href="@{/login}" class="btn btn-outline-light me-2">Sign In</a>
+                <a th:href="@{/register}" class="btn btn-primary">Register</a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<!-- Hero Section -->
+<section class="hero-section text-center">
+    <div class="container">
+        <h1 class="display-4 fw-bold mb-4">Find Your Perfect Real Estate Agent</h1>
+        <p class="lead mb-5">Connect with top-rated real estate professionals in your area who can help you buy, sell, or rent properties with ease.</p>
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <form class="row g-3">
+                    <div class="col-md-5">
+                        <select class="form-select form-select-lg">
+                            <option selected>Specialization</option>
+                            <option>Residential</option>
+                            <option>Commercial</option>
+                            <option>Industrial</option>
+                            <option>Luxury</option>
+                            <option>Investment</option>
+                        </select>
+                    </div>
+                    <div class="col-md-5">
+                        <input type="text" class="form-control form-control-lg" placeholder="Location (City or Zip)">
+                    </div>
+                    <div class="col-md-2">
+                        <button type="submit" class="btn btn-primary btn-lg w-100">Search</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Features Section -->
+<section class="container mb-5">
+    <h2 class="text-center mb-5">Why Choose Our Platform?</h2>
+    <div class="row g-4">
+        <div class="col-md-4">
+            <div class="card feature-card p-4 text-center">
+                <div class="card-body">
+                    <i class="bi bi-person-check feature-icon"></i>
+                    <h3 class="card-title">Verified Agents</h3>
+                    <p class="card-text">All agents on our platform are thoroughly vetted and verified to ensure you work with qualified professionals.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card feature-card p-4 text-center">
+                <div class="card-body">
+                    <i class="bi bi-calendar-check feature-icon"></i>
+                    <h3 class="card-title">Easy Scheduling</h3>
+                    <p class="card-text">Book appointments with agents directly through our platform at times that work for your schedule.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card feature-card p-4 text-center">
+                <div class="card-body">
+                    <i class="bi bi-star feature-icon"></i>
+                    <h3 class="card-title">Client Reviews</h3>
+                    <p class="card-text">Read authentic reviews from previous clients to help you choose the right agent for your needs.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- How It Works Section -->
+<section class="container mb-5">
+    <h2 class="text-center mb-5">How It Works</h2>
+    <div class="row align-items-center">
+        <div class="col-md-6">
+            <img src="https://images.unsplash.com/photo-1560520031-3a4dc4e9de0c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1073&q=80"
+                 class="img-fluid rounded" alt="How it works">
+        </div>
+        <div class="col-md-6">
+            <div class="d-flex mb-4">
+                <div class="me-4">
+                    <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center"
+                         style="width: 50px; height: 50px;">1</div>
+                </div>
+                <div>
+                    <h4>Create an Account</h4>
+                    <p>Sign up as a client looking for real estate assistance or as an agent offering your services.</p>
+                </div>
+            </div>
+            <div class="d-flex mb-4">
+                <div class="me-4">
+                    <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center"
+                         style="width: 50px; height: 50px;">2</div>
+                </div>
+                <div>
+                    <h4>Find the Perfect Match</h4>
+                    <p>Search for agents based on location, specialization, experience, and client ratings.</p>
+                </div>
+            </div>
+            <div class="d-flex mb-4">
+                <div class="me-4">
+                    <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center"
+                         style="width: 50px; height: 50px;">3</div>
+                </div>
+                <div>
+                    <h4>Schedule Appointments</h4>
+                    <p>Book appointments directly through our platform at times that work for both parties.</p>
+                </div>
+            </div>
+            <div class="d-flex">
+                <div class="me-4">
+                    <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center"
+                         style="width: 50px; height: 50px;">4</div>
+                </div>
+                <div>
+                    <h4>Achieve Your Real Estate Goals</h4>
+                    <p>Work with your chosen agent to buy, sell, or rent properties with confidence.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Featured Agents Section -->
+<section class="container mb-5">
+    <h2 class="text-center mb-5">Featured Agents</h2>
+    <div class="row g-4">
+        <div class="col-md-4">
+            <div class="card agent-card">
+                <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=688&q=80"
+                     class="card-img-top agent-img" alt="Agent">
+                <div class="card-body">
+                    <h5 class="card-title">Sarah Johnson</h5>
+                    <p class="card-text text-muted">Residential Specialist</p>
+                    <div class="mb-2 text-warning">
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-half"></i>
+                        <span class="text-muted ms-1">4.5 (42 reviews)</span>
+                    </div>
+                    <p class="card-text"><i class="bi bi-geo-alt"></i> Downtown, West Side</p>
+                    <p class="card-text"><i class="bi bi-briefcase"></i> 8 years experience</p>
+                    <div class="d-grid">
+                        <a href="#" class="btn btn-primary">View Profile</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card agent-card">
+                <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
+                     class="card-img-top agent-img" alt="Agent">
+                <div class="card-body">
+                    <h5 class="card-title">Michael Rodriguez</h5>
+                    <p class="card-text text-muted">Commercial Specialist</p>
+                    <div class="mb-2 text-warning">
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star"></i>
+                        <span class="text-muted ms-1">4.0 (38 reviews)</span>
+                    </div>
+                    <p class="card-text"><i class="bi bi-geo-alt"></i> Business District, North Side</p>
+                    <p class="card-text"><i class="bi bi-briefcase"></i> 12 years experience</p>
+                    <div class="d-grid">
+                        <a href="#" class="btn btn-primary">View Profile</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card agent-card">
+                <img src="https://images.unsplash.com/photo-1580894732444-8ecded7900cd?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
+                     class="card-img-top agent-img" alt="Agent">
+                <div class="card-body">
+                    <h5 class="card-title">Jennifer Chen</h5>
+                    <p class="card-text text-muted">Luxury Property Specialist</p>
+                    <div class="mb-2 text-warning">
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <span class="text-muted ms-1">5.0 (27 reviews)</span>
+                    </div>
+                    <p class="card-text"><i class="bi bi-geo-alt"></i> Uptown, Coastal Areas</p>
+                    <p class="card-text"><i class="bi bi-briefcase"></i> 15 years experience</p>
+                    <div class="d-grid">
+                        <a href="#" class="btn btn-primary">View Profile</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="text-center mt-4">
+        <a href="#" class="btn btn-outline-primary btn-lg">View All Agents</a>
+    </div>
+</section>
+
+<!-- Testimonials Section -->
+<section class="container mb-5">
+    <h2 class="text-center mb-5">What Our Users Say</h2>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card testimonial-card p-4">
+                <div class="card-body">
+                    <div class="d-flex align-items-center mb-3">
+                        <img src="https://randomuser.me/api/portraits/men/32.jpg" class="testimonial-img" alt="Testimonial">
+                        <div>
+                            <h5 class="mb-0">Robert Thompson</h5>
+                            <p class="text-muted mb-0">Homebuyer</p>
+                        </div>
+                    </div>
+                    <div class="mb-2 text-warning">
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                    </div>
+                    <p class="card-text">
+                        "I was struggling to find a reliable agent in my area until I discovered this platform.
+                        Within days, I was connected with Sarah who helped me find my dream home. The appointment
+                        scheduling feature made the process so convenient!"
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card testimonial-card p-4">
+                <div class="card-body">
+                    <div class="d-flex align-items-center mb-3">
+                        <img src="https://randomuser.me/api/portraits/women/44.jpg" class="testimonial-img" alt="Testimonial">
+                        <div>
+                            <h5 class="mb-0">Amanda Garcia</h5>
+                            <p class="text-muted mb-0">Property Seller</p>
+                        </div>
+                    </div>
+                    <div class="mb-2 text-warning">
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-half"></i>
+                    </div>
+                    <p class="card-text">
+                        "As someone selling a property for the first time, I needed an experienced agent.
+                        This platform helped me find Michael who guided me through the entire process.
+                        His expertise helped me get a better price than I expected. Highly recommended!"
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Call to Action Section -->
+<section class="cta-section text-center">
+    <div class="container">
+        <h2 class="display-5 fw-bold mb-4">Ready to Find Your Perfect Real Estate Agent?</h2>
+        <p class="lead mb-4">Join thousands of satisfied clients who have found their ideal real estate partners through our platform.</p>
+        <div class="d-grid gap-3 d-sm-flex justify-content-sm-center">
+            <a th:href="@{/register}" class="btn btn-primary btn-lg px-4 gap-3">Get Started</a>
+            <a href="#" class="btn btn-outline-light btn-lg px-4">Learn More</a>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 mb-4">
+                <h5 class="footer-heading">Real Estate Agent Finder</h5>
+                <p>Connecting clients with qualified real estate professionals for successful property transactions.</p>
+                <div class="mt-3">
+                    <a href="#" class="social-icon"><i class="bi bi-facebook"></i></a>
+                    <a href="#" class="social-icon"><i class="bi bi-twitter"></i></a>
+                    <a href="#" class="social-icon"><i class="bi bi-instagram"></i></a>
+                    <a href="#" class="social-icon"><i class="bi bi-linkedin"></i></a>
+                </div>
+            </div>
+            <div class="col-md-2 mb-4">
+                <h5 class="footer-heading">Quick Links</h5>
+                <ul class="list-unstyled">
+                    <li class="mb-2"><a href="#">Home</a></li>
+                    <li class="mb-2"><a href="#">Find Agents</a></li>
+                    <li class="mb-2"><a href="#">Properties</a></li>
+                    <li class="mb-2"><a href="#">About Us</a></li>
+                    <li class="mb-2"><a href="#">Contact</a></li>
+                </ul>
+            </div>
+            <div class="col-md-3 mb-4">
+                <h5 class="footer-heading">For Agents</h5>
+                <ul class="list-unstyled">
+                    <li class="mb-2"><a href="#">Join as Agent</a></li>
+                    <li class="mb-2"><a href="#">Agent Dashboard</a></li>
+                    <li class="mb-2"><a href="#">Success Stories</a></li>
+                    <li class="mb-2"><a href="#">Agent Resources</a></li>
+                    <li class="mb-2"><a href="#">FAQs</a></li>
+                </ul>
+            </div>
+            <div class="col-md-3 mb-4">
+                <h5 class="footer-heading">Contact Us</h5>
+                <ul class="list-unstyled">
+                    <li class="mb-2"><i class="bi bi-geo-alt me-2"></i> 123 Real Estate Ave, Suite 456</li>
+                    <li class="mb-2"><i class="bi bi-telephone me-2"></i> (123) 456-7890</li>
+                    <li class="mb-2"><i class="bi bi-envelope me-2"></i> info@realestateagentfinder.com</li>
+                </ul>
+            </div>
+        </div>
+        <hr class="mt-4 mb-4" style="border-color: rgba(255,255,255,0.1);">
+        <div class="row">
+            <div class="col-md-6 text-center text-md-start">
+                <p class="small mb-0">&copy; 2025 Real Estate Agent Finder. All rights reserved.</p>
+            </div>
+            <div class="col-md-6 text-center text-md-end">
+                <p class="small mb-0">
+                    <a href="#">Privacy Policy</a> |
+                    <a href="#">Terms of Service</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

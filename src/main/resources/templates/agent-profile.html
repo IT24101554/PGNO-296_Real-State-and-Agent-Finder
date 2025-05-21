@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agent Profile - Real Estate Agent Finder</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            padding-top: 20px;
+            padding-bottom: 40px;
+        }
+        .profile-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .card {
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+        .card-header {
+            background-color: #2c3e50;
+            color: white;
+            border-radius: 10px 10px 0 0 !important;
+            padding: 15px 20px;
+        }
+        .btn-primary {
+            background-color: #2c3e50;
+            border-color: #2c3e50;
+        }
+        .btn-primary:hover {
+            background-color: #1a252f;
+            border-color: #1a252f;
+        }
+        .btn-success {
+            background-color: #27ae60;
+            border-color: #27ae60;
+        }
+        .btn-success:hover {
+            background-color: #219a52;
+            border-color: #219a52;
+        }
+        .btn-danger {
+            background-color: #e74c3c;
+            border-color: #e74c3c;
+        }
+        .btn-danger:hover {
+            background-color: #c0392b;
+            border-color: #c0392b;
+        }
+        .btn-outline-primary {
+            color: #2c3e50;
+            border-color: #2c3e50;
+        }
+        .btn-outline-primary:hover {
+            background-color: #2c3e50;
+            border-color: #2c3e50;
+        }
+        .nav-pills .nav-link.active {
+            background-color: #2c3e50;
+        }
+        .nav-pills .nav-link {
+            color: #2c3e50;
+        }
+        .form-control:focus, .form-select:focus {
+            border-color: #2c3e50;
+            box-shadow: 0 0 0 0.25rem rgba(44, 62, 80, 0.25);
+        }
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 5px solid #fff;
+            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+        }
+        .badge-verified {
+            background-color: #27ae60;
+            color: white;
+        }
+        .badge-pending {
+            background-color: #f39c12;
+            color: white;
+        }
+        .availability-indicator {
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 5px;
+        }
+        .available {
+            background-color: #27ae60;
+        }
+        .unavailable {
+            background-color: #e74c3c;
+        }
+        .service-area-badge {
+            background-color: #3498db;
+            color: white;
+            margin-right: 5px;
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+<!-- Navigation Bar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+        <a class="navbar-brand" href="#">Real Estate Agent Finder</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#"><i class="bi bi-house-door"></i> Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#"><i class="bi bi-calendar-check"></i> My Appointments</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#"><i class="bi bi-building"></i> My Listings</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                       data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="bi bi-person-circle"></i> <span th:text="${agent.name}">Jane Smith</span>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="#"><i class="bi bi-person"></i> My Profile</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" th:href="@{/logout}"><i class="bi bi-box-arrow-right"></i> Logout</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container profile-container mt-4">
+    <!-- Success Alert -->
+    <div th:if="${param.updated}" class="alert alert-success alert-dismissible fade show" role="alert">
+        Your profile has been updated successfully.
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+
+    <div class="row">
+        <!-- Left Sidebar -->
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0"><i class="bi bi-person-badge"></i> Agent Profile</h5>
+                </div>
+                <div class="card-body text-center">
+                    <img th:src="${agent.profilePicture != null ? agent.profilePicture : 'https://via.placeholder.com/150'}"
+                         class="profile-img mb-3" alt="Profile Picture">
+                    <h4 th:text="${agent.name}">Jane Smith</h4>
+                    <p class="text-muted" th:text="${agent.email}">jane.smith@example.com</p>
+
+                    <div class="mb-3">
+                            <span th:if="${agent.isVerified}" class="badge badge-verified">
+                                <i class="bi bi-check-circle-fill"></i> Verified Agent
+                            </span>
+                        <span th:unless="${agent.isVerified}" class="badge badge-pending">
+                                <i class="bi bi-clock"></i> Verification Pending
+                            </span>
+                    </div>
+
+                    <div class="mb-3">
+                            <span th:if="${agent.isAvailable}" class="badge bg-success">
+                                <i class="bi bi-check-circle"></i> Available for Appointments
+                            </span>
+                        <span th:unless="${agent.isAvailable}" class="badge bg-danger">
+                                <i class="bi bi-x-circle"></i> Not Available
+                            </span>
+                    </div>
+
+                    <form th:action="@{/agent/toggle-availability}" method="post">
+                        <button type="submit" class="btn btn-sm"
+                                th:classappend="${agent.isAvailable ? 'btn-danger' : 'btn-success'}">
+                                <span th:if="${agent.isAvailable}">
+                                    <i class="bi bi-toggle-on"></i> Set as Unavailable
+                                </span>
+                            <span th:unless="${agent.isAvailable}">
+                                    <i class="bi bi-toggle-off"></i> Set as Available
+                                </span>
+                        </button>
+                    </form>
+
+                    <div class="d-grid gap-2 mt-3">
+                        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editProfileModal">
+                            <i class="bi bi-pencil-square"></i> Edit Profile
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card mt-4">
+                <div class="card-header">
+                    <h5 class="mb-0"><i class="bi bi-briefcase"></i> Professional Details</h5>
+                </div>
+                <div class="card-body">
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">License Number:</label>
+                        <p th:text="${agent.licenseNumber}">RE12345678</p>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Specialization:</label>
+                        <p th:text="${agent.specialization}">Residential</p>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Experience:</label>
+                        <p><span th:text="${agent.yearsOfExperience}">10</span> years</p>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Service Areas:</label>
+                        <div>
+                                <span th:each="area : ${agent.serviceAreas}" class="badge service-area-badge" th:text="${area}">
+                                    Downtown
+                                </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0"><i class="bi bi-speedometer2"></i> Dashboard</h5>
+                </div>
+                <div class="card-body">
+                    <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active" id="pills-appointments-tab" data-bs-toggle="pill"
+                                    data-bs-target="#pills-appointments" type="button" role="tab">
+                                Upcoming Appointments
+                            </button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="pills-listings-tab" data-bs-toggle="pill"
+                                    data-bs-target="#pills-listings" type="button" role="tab">
+                                My Listings
+                            </button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="pills-reviews-tab" data-bs-toggle="pill"
+                                    data-bs-target="#pills-reviews" type="button" role="tab">
+                                Client Reviews
+                            </button>
+                        </li>
+                    </ul>
+                    <div class="tab-content" id="pills-tabContent">
+                        <!-- Appointments Tab -->
+                        <div class="tab-pane fade show active" id="pills-appointments" role="tabpanel">
+                            <div class="alert alert-info">
+                                <i class="bi bi-info-circle"></i> You have no upcoming appointments.
+                            </div>
+                            <div class="text-center mt-3">
+                                <a href="#" class="btn btn-outline-primary">View Calendar</a>
+                            </div>
+                        </div>
+
+                        <!-- Listings Tab -->
+                        <div class="tab-pane fade" id="pills-listings" role="tabpanel">
+                            <div class="alert alert-info">
+                                <i class="bi bi-info-circle"></i> You haven't added any property listings yet.
+                            </div>
+                            <div class="text-center mt-3">
+                                <a href="#" class="btn btn-primary">Add New Listing</a>
+                            </div>
+                        </div>
+
+                        <!-- Reviews Tab -->
+                        <div class="tab-pane fade" id="pills-reviews" role="tabpanel">
+                            <div class="alert alert-info">
+                                <i class="bi bi-info-circle"></i> No client reviews yet.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card mt-4">
+                <div class="card-header">
+                    <h5 class="mb-0"><i class="bi bi-calendar-week"></i> Availability Schedule</h5>
+                </div>
+                <div class="card-body">
+                    <p class="mb-3">Set your weekly availability for client appointments:</p>
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead class="table-light">
+                            <tr>
+                                <th>Day</th>
+                                <th>Morning (9AM-12PM)</th>
+                                <th>Afternoon (1PM-5PM)</th>
+                                <th>Evening (6PM-8PM)</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>Monday</td>
+                                <td><input type="checkbox" class="form-check-input" checked></td>
+                                <td><input type="checkbox" class="form-check-input" checked></td>
+                                <td><input type="checkbox" class="form-check-input"></td>
+                            </tr>
+                            <tr>
+                                <td>Tuesday</td>
+                                <td><input type="checkbox" class="form-check-input" checked></td>
+                                <td><input type="checkbox" class="form-check-input" checked></td>
+                                <td><input type="checkbox" class="form-check-input"></td>
+                            </tr>
+                            <tr>
+                                <td>Wednesday</td>
+                                <td><input type="checkbox" class="form-check-input" checked></td>
+                                <td><input type="checkbox" class="form-check-input" checked></td>
+                                <td><input type="checkbox" class="form-check-input"></td>
+                            </tr>
+                            <tr>
+                                <td>Thursday</td>
+                                <td><input type="checkbox" class="form-check-input" checked></td>
+                                <td><input type="checkbox" class="form-check-input" checked></td>
+                                <td><input type="checkbox" class="form-check-input"></td>
+                            </tr>
+                            <tr>
+                                <td>Friday</td>
+                                <td><input type="checkbox" class="form-check-input" checked></td>
+                                <td><input type="checkbox" class="form-check-input" checked></td>
+                                <td><input type="checkbox" class="form-check-input"></td>
+                            </tr>
+                            <tr>
+                                <td>Saturday</td>
+                                <td><input type="checkbox" class="form-check-input" checked></td>
+                                <td><input type="checkbox" class="form-check-input"></td>
+                                <td><input type="checkbox" class="form-check-input"></td>
+                            </tr>
+                            <tr>
+                                <td>Sunday</td>
+                                <td><input type="checkbox" class="form-check-input"></td>
+                                <td><input type="checkbox" class="form-check-input"></td>
+                                <td><input type="checkbox" class="form-check-input"></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="d-grid gap-2 col-md-6 mx-auto mt-3">
+                        <button class="btn btn-primary">Save Availability</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Edit Profile Modal -->
+<div class="modal fade" id="editProfileModal" tabindex="-1" aria-labelledby="editProfileModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editProfileModalLabel">Edit Agent Profile</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form th:action="@{/agent/update}" method="post" th:object="${agent}" enctype="multipart/form-data">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="name" class="form-label">Full Name</label>
+                            <input type="text" class="form-control" id="name" th:field="*{name}" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="email" class="form-label">Email Address</label>
+                            <input type="email" class="form-control" id="email" th:field="*{email}" required>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="contactNumber" class="form-label">Contact Number</label>
+                            <input type="tel" class="form-control" id="contactNumber" th:field="*{contactNumber}" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="licenseNumber" class="form-label">License Number</label>
+                            <input type="text" class="form-control" id="licenseNumber" th:field="*{licenseNumber}" required>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="specialization" class="form-label">Specialization</label>
+                            <select class="form-select" id="specialization" th:field="*{specialization}">
+                                <option value="">Select Specialization</option>
+                                <option value="Residential">Residential</option>
+                                <option value="Commercial">Commercial</option>
+                                <option value="Industrial">Industrial</option>
+                                <option value="Luxury">Luxury</option>
+                                <option value="Investment">Investment</option>
+                                <option value="Rental">Rental</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="yearsOfExperience" class="form-label">Years of Experience</label>
+                            <input type="number" class="form-control" id="yearsOfExperience" th:field="*{yearsOfExperience}" min="0" required>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="serviceAreas" class="form-label">Service Areas (comma separated)</label>
+                        <input type="text" class="form-control" id="serviceAreas" name="serviceAreasInput"
+                               th:value="${#strings.listJoin(agent.serviceAreas, ', ')}"
+                               placeholder="e.g. Downtown, North Side, West Hills">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="profilePicture" class="form-label">Profile Picture</label>
+                        <input type="file" class="form-control" id="profilePicture" name="profileImage" accept="image/*">
+                        <small class="form-text text-muted">Leave blank to keep current picture</small>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="password" class="form-label">New Password (leave blank to keep current)</label>
+                        <input type="password" class="form-control" id="password" name="newPassword">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
