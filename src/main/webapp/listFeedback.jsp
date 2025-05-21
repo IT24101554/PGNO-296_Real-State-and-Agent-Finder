@@ -3,7 +3,7 @@
 <html>
 <head>
     <title>Feedback List</title>
-    <link ref="stylesheet" href="listFeedback.jsp">
+    <link rel="stylesheet" href="css/list.css">
 </head>
 <body>
 <h2>Feedback List</h2>
