@@ -39,9 +39,9 @@ public class Feedback {
 
     // Parse stars back into numeric rating
     public static Feedback fromFileString(String line) {
-        String[] parts = line.split(";");
-        if (parts.length == 5) {
-            int rating = (int) parts[3].chars().filter(c -> c == '★').count();
+        String[] parts = line.split(";",-1);
+        if (parts.length == 4) {
+            int rating = (int) parts[2].chars().filter(c -> c == '★').count();
             return new Feedback(parts[0], parts[1], rating, parts[3]);
         }
         return null;

@@ -13,7 +13,7 @@
 
 <div class="container">
   <h2>Real State Agent Finder</h2>
-  <p>Please use the menu above to submit or view feedback about our instructors.</p>
+  <p>Please use the menu above to submit or view feedback about our Agents.</p>
 
   <div class="buttons">
     <a href="submitFeedback.jsp"><button>✅ Submit Feedback</button></a>

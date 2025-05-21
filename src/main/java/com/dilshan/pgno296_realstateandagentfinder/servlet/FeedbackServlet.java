@@ -11,13 +11,9 @@ import java.util.*;
 @WebServlet("/submitFeedback")
 public class FeedbackServlet extends HttpServlet {
 
-    String relativePath = "data/Feedback.txt";
-    String absolutePath = getServletContext().getRealPath("/") + relativePath;
-
     private String getFilePath() {
         return getServletContext().getRealPath("/") + "data/Feedback.txt";
     }
-    String path = getFilePath();
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -28,15 +24,24 @@ public class FeedbackServlet extends HttpServlet {
         int rating = Integer.parseInt(request.getParameter("rating"));
         String comments = request.getParameter("comments");
 
+        if(name==null || email==null || rating==0 || comments==null || name.trim().isEmpty() || email.trim().isEmpty()){
+            response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Please fill all the required fields");
+            return;
+        }
+
         Feedback feedback = new Feedback(name, email, rating, comments);
 
-        String filePath = getServletContext().getRealPath("/") + "data/Feedback.txt";
-
+        String filePath = getFilePath();
         File file = new File(filePath);
         file.getParentFile().mkdirs();
 
-        try (PrintWriter out = new PrintWriter(new FileWriter(getFilePath(), true))) {
-            out.println(feedback.toFileString());
+        synchronized (this) {
+            try (PrintWriter out = new PrintWriter(new FileWriter(file, true))) {
+                out.println(feedback.toFileString());
+            } catch (IOException e) {
+                response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Error saving feedback.");
+                return;
+            }
         }
 
         response.sendRedirect("listFeedback.jsp");
@@ -49,12 +54,16 @@ public class FeedbackServlet extends HttpServlet {
         Path path = Paths.get(filepath);
 
         if (Files.exists(path)) {
-            List<String> lines = Files.readAllLines(path);
-            for (String line : lines) {
-                Feedback f = Feedback.fromFileString(line);
-                if (f != null) {
-                    list.add(f);
+            try{
+                List<String> lines = Files.readAllLines(path);
+                for (String line : lines) {
+                    Feedback f = Feedback.fromFileString(line);
+                    if (f != null) {
+                        list.add(f);
+                    }
                 }
+            }catch (IOException e){
+                throw new IOException("Error reading feedback list" + e.getMessage());
             }
         }
 
