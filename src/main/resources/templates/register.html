@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - Real Estate Agent Finder</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            padding-top: 20px;
+            padding-bottom: 40px;
+        }
+        .register-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .card {
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+        }
+        .card-header {
+            background-color: #2c3e50;
+            color: white;
+            border-radius: 10px 10px 0 0 !important;
+            padding: 20px;
+        }
+        .btn-primary {
+            background-color: #2c3e50;
+            border-color: #2c3e50;
+        }
+        .btn-primary:hover {
+            background-color: #1a252f;
+            border-color: #1a252f;
+        }
+        .form-control:focus, .form-select:focus {
+            border-color: #2c3e50;
+            box-shadow: 0 0 0 0.25rem rgba(44, 62, 80, 0.25);
+        }
+        .nav-tabs .nav-link {
+            color: #2c3e50;
+        }
+        .nav-tabs .nav-link.active {
+            color: #2c3e50;
+            font-weight: bold;
+            border-color: #dee2e6 #dee2e6 #fff;
+        }
+    </style>
+</head>
+<body>
+<div class="container register-container">
+    <div class="card mb-4">
+        <div class="card-header text-center">
+            <h3>Create an Account</h3>
+            <p class="mb-0">Join our Real Estate Agent Finder platform</p>
+        </div>
+        <div class="card-body p-4">
+            <div th:if="${error}" class="alert alert-danger" th:text="${error}"></div>
+
+            <ul class="nav nav-tabs" id="registerTab" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="client-tab" data-bs-toggle="tab" data-bs-target="#client"
+                            type="button" role="tab" aria-controls="client" aria-selected="true">
+                        Register as Client
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="agent-tab" data-bs-toggle="tab" data-bs-target="#agent"
+                            type="button" role="tab" aria-controls="agent" aria-selected="false">
+                        Register as Agent
+                    </button>
+                </li>
+            </ul>
+
+            <div class="tab-content pt-4" id="registerTabContent">
+                <!-- Client Registration Form -->
+                <div class="tab-pane fade show active" id="client" role="tabpanel" aria-labelledby="client-tab">
+                    <form th:action="@{/register/client}" method="post" th:object="${client}">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="clientName" class="form-label">Full Name</label>
+                                <input type="text" class="form-control" id="clientName" th:field="*{name}" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="clientEmail" class="form-label">Email Address</label>
+                                <input type="email" class="form-control" id="clientEmail" th:field="*{email}" required>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="clientPassword" class="form-label">Password</label>
+                                <input type="password" class="form-control" id="clientPassword" th:field="*{password}" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="clientContact" class="form-label">Contact Number</label>
+                                <input type="tel" class="form-control" id="clientContact" th:field="*{contactNumber}" required>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="preferredPropertyType" class="form-label">Preferred Property Type</label>
+                                <select class="form-select" id="preferredPropertyType" th:field="*{preferredPropertyType}">
+                                    <option value="">Select Property Type</option>
+                                    <option value="Apartment">Apartment</option>
+                                    <option value="House">House</option>
+                                    <option value="Condo">Condo</option>
+                                    <option value="Townhouse">Townhouse</option>
+                                    <option value="Land">Land</option>
+                                    <option value="Commercial">Commercial Property</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="preferredLocation" class="form-label">Preferred Location</label>
+                                <input type="text" class="form-control" id="preferredLocation" th:field="*{preferredLocation}"
+                                       placeholder="City, neighborhood, or area">
+                            </div>
+                        </div>
+
+                        <div class="d-grid gap-2 mt-4">
+                            <button type="submit" class="btn btn-primary btn-lg">Register as Client</button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Agent Registration Form -->
+                <div class="tab-pane fade" id="agent" role="tabpanel" aria-labelledby="agent-tab">
+                    <form th:action="@{/register/agent}" method="post" th:object="${agent}" enctype="multipart/form-data">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="agentName" class="form-label">Full Name</label>
+                                <input type="text" class="form-control" id="agentName" th:field="*{name}" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="agentEmail" class="form-label">Email Address</label>
+                                <input type="email" class="form-control" id="agentEmail" th:field="*{email}" required>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="agentPassword" class="form-label">Password</label>
+                                <input type="password" class="form-control" id="agentPassword" th:field="*{password}" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="agentContact" class="form-label">Contact Number</label>
+                                <input type="tel" class="form-control" id="agentContact" th:field="*{contactNumber}" required>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="licenseNumber" class="form-label">License Number</label>
+                                <input type="text" class="form-control" id="licenseNumber" th:field="*{licenseNumber}" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="yearsOfExperience" class="form-label">Years of Experience</label>
+                                <input type="number" class="form-control" id="yearsOfExperience" th:field="*{yearsOfExperience}" min="0" required>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="specialization" class="form-label">Specialization</label>
+                                <select class="form-select" id="specialization" th:field="*{specialization}">
+                                    <option value="">Select Specialization</option>
+                                    <option value="Residential">Residential</option>
+                                    <option value="Commercial">Commercial</option>
+                                    <option value="Industrial">Industrial</option>
+                                    <option value="Luxury">Luxury</option>
+                                    <option value="Investment">Investment</option>
+                                    <option value="Rental">Rental</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="profilePicture" class="form-label">Profile Picture</label>
+                                <input type="file" class="form-control" id="profilePicture" name="profileImage" accept="image/*">
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="serviceAreas" class="form-label">Service Areas (comma separated)</label>
+                            <input type="text" class="form-control" id="serviceAreas" name="serviceAreasInput"
+                                   placeholder="e.g. Downtown, North Side, West Hills">
+                        </div>
+
+                        <div class="d-grid gap-2 mt-4">
+                            <button type="submit" class="btn btn-primary btn-lg">Register as Agent</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="text-center mt-4">
+                <p>Already have an account? <a th:href="@{/login}" class="text-decoration-none">Sign in</a></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
