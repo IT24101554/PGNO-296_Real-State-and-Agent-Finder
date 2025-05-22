@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Client Management</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<h1>Client List</h1>
+<a th:href="@{/clients/new}">Add New Client</a>
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Phone</th>
+        <th>Preferred Property</th>
+        <th>Budget</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="client : ${clients}">
+        <td th:text="${client.id}"></td>
+        <td th:text="${client.name}"></td>
+        <td th:text="${client.email}"></td>
+        <td th:text="${client.phone}"></td>
+        <td th:text="${client.preferredPropertyType}"></td>
+        <td th:text="'$' + ${#numbers.formatDecimal(client.budget, 1, 2)}"></td>
+        <td>
+            <a th:href="@{/clients/edit/{id}(id=${client.id})}">Edit</a>
+            <a th:href="@{/clients/delete/{id}(id=${client.id})}">Delete</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
